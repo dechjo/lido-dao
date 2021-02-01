@@ -168,8 +168,7 @@ contract LidoOracle is ILidoOracle, AragonApp {
         assert(maxReportedEpochId <= getCurrentEpochId());
 
         if (maxReportedEpochId >= minReportableEpochId) {
-            if (maxReportedEpochId != minReportableEpochId) {
-            bool pushed = members.length > 0 &&_tryPush(maxReportedEpochId);
+            bool pushed = members.length > 0 && _tryPush(maxReportedEpochId);
             if (!pushed && maxReportedEpochId != minReportableEpochId) {
                 MIN_REPORTABLE_EPOCH_ID_POSITION.setStorageUint256(maxReportedEpochId);
                 emit MinReportableEpochIdUpdated(maxReportedEpochId);
